@@ -59,7 +59,7 @@ function Pagination({ count }) {
         </button>
 
         <button
-          className="
+          className=" 
             bg-[var(--color-brand-600)]
             text-[var(--color-brand-50)]
             border-none
