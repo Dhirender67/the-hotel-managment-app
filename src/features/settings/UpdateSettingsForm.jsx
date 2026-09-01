@@ -15,7 +15,7 @@ function UpdateSettingsForm() {
   const { updateSettingMutate, isUpdateSettingLoad } = useUpdateSettings();
   function handleUpdate(e, field) {
     const value = e.target.value;
-    console.log(value);
+    // console.log(value);
     if (!value) return;
     updateSettingMutate({ [field]: value });
   }

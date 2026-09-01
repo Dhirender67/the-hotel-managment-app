@@ -71,7 +71,7 @@ function Pagination({ count }) {
             px-[1.2rem] py-[0.6rem]
           "
         >
-          1
+          {currentPage}
         </button>
 
         <button

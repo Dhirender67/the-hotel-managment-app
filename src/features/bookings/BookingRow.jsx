@@ -63,48 +63,51 @@ function BookingRow({ bookingData }) {
       </Table.Cell>
 
       <Table.Cell>{formatCurrency(totalPrice)} </Table.Cell>
-      <div className="flex items-center h-full">
-        <Menus.Menu>
-          <Menus.Toggle id={bookingId} />
-          <Menus.List id={bookingId}>
-            <Menus.Button onClick={() => navigate(`/bookingDT/${bookingId}`)}>
-              <div className="flex gap-2 items-center">
-                <HiMiniEye /> See Details
-              </div>
-            </Menus.Button>
-            {status === "Unconfirmed" && (
-              <Menus.Button onClick={() => navigate(`/checkIn/${bookingId}`)}>
+
+      <Table.Cell>
+        <div className="flex items-center h-full">
+          <Menus.Menu>
+            <Menus.Toggle id={bookingId} />
+            <Menus.List id={bookingId}>
+              <Menus.Button onClick={() => navigate(`/bookingDT/${bookingId}`)}>
                 <div className="flex gap-2 items-center">
-                  <HiOutlineBanknotes />
-                  Check-In
+                  <HiMiniEye /> See Details
                 </div>
               </Menus.Button>
-            )}
-            {status === "checked-in" && (
-              <Menus.Button
-                onClick={() => checkOutMutate(bookingId)}
-                disabled={isCheckOut}
-              >
+              {status === "Unconfirmed" && (
+                <Menus.Button onClick={() => navigate(`/checkIn/${bookingId}`)}>
+                  <div className="flex gap-2 items-center">
+                    <HiOutlineBanknotes />
+                    Check-In
+                  </div>
+                </Menus.Button>
+              )}
+              {status === "checked-in" && (
+                <Menus.Button
+                  onClick={() => checkOutMutate(bookingId)}
+                  disabled={isCheckOut}
+                >
+                  <div className="flex gap-2 items-center">
+                    <HiOutlineBanknotes />
+                    Check-Out
+                  </div>
+                </Menus.Button>
+              )}
+              <Menus.Button onClick={() => deleteBookingMutate(bookingId)}>
                 <div className="flex gap-2 items-center">
-                  <HiOutlineBanknotes />
-                  Check-Out
+                  {isBookingDeleting ? (
+                    "Deleting..."
+                  ) : (
+                    <>
+                      <HiTrash /> Delete Bookings
+                    </>
+                  )}
                 </div>
               </Menus.Button>
-            )}
-            <Menus.Button onClick={() => deleteBookingMutate(bookingId)}>
-              <div className="flex gap-2 items-center">
-                {isBookingDeleting ? (
-                  "Deleting..."
-                ) : (
-                  <>
-                    <HiTrash /> Delete Bookings
-                  </>
-                )}
-              </div>
-            </Menus.Button>
-          </Menus.List>
-        </Menus.Menu>
-      </div>
+            </Menus.List>
+          </Menus.Menu>
+        </div>
+      </Table.Cell>
     </Table.Row>
   );
 }

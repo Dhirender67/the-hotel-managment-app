@@ -18,7 +18,14 @@ function ProtectedRout({ children }) {
   );
 
   // 3. While Loading, show spinner
-  if (isPending) return <Spinner />;
+  if (isPending)
+    return (
+      <>
+        <div className="flex justify-center items-center h-[100vh]">
+          <Spinner />
+        </div>
+      </>
+    );
 
   // 4. if there IS a user, render the app
 
